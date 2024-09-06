@@ -1,0 +1,123 @@
+html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Display</title>
+</head>
+<body>
+    <h1>Available Products</h1>
+    <ul id="product-list"></ul>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
+// Task 1: Create an array of product objects
+let products = [
+    { name: "Laptop", price: 999.99, description: "Powerful computing on the go" },
+    { name: "Smartphone", price: 699.99, description: "Stay connected wherever you are" },
+    { name: "Headphones", price: 149.99, description: "Immersive audio experience" }
+];
+
+// Task 2: Function to display product information
+function displayProducts() {
+    const productList = document.getElementById('product-list');
+    products.forEach(product => {
+        let productItem = document.createElement('li');
+        productItem.innerHTML = `<strong>${product.name}</strong>: $${product.price} - ${product.description}`;
+        productList.appendChild(productItem);
+    });
+}
+
+// Task 3: Trigger the display of products when the page loads
+window.addEventListener('load', displayProducts);
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Form</title>
+</head>
+<body>
+    <h1>Contact Us</h1>
+    <form id="contact-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" required><br><br>
+
+        <label for="message">Message:</label>
+        <textarea id="message" required></textarea><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script src="form.js"></script>
+</body>
+</html>
+
+// Task 2: Handle form submissions and store input data in an object
+document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
+
+    let user = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        message: document.getElementById('message').value
+    };
+
+    console.log(user); // Display user input object in the console
+    alert("Form submitted successfully!");
+
+    // Optionally, reset the form after submission
+    event.target.reset();
+});
+
+// Task 3: Form validation is handled by 'required' attribute in HTML
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Styling</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            display: inline-block;
+        }
+        #box:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="box" onclick="changeColor()">Click me to change color</div>
+    <button id="reset-btn">Reset Color</button>
+
+    <script src="style.js"></script>
+</body>
+</html>
+
+// Task 2: Function to change the color of the box
+function changeColor() {
+    const box = document.getElementById('box');
+    box.style.backgroundColor = getRandomColor();
+}
+
+// Utility function to generate random color
+function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+// Task 3: Additional styling change - reset color on button click
+document.getElementById('reset-btn').addEventListener('click', function() {
+    document.getElementById('box').style.backgroundColor = 'lightblue';
+});
